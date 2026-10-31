@@ -35,7 +35,7 @@ describe("FixedPhotoHero", () => {
     const home = read("../src/pages/index.astro");
 
     expect(home).toContain('description="Sundharesan Kumaresan · Forward Deployed Engineer at Oogway Labs. A personal publication about systems, stories, and who gets seen."');
-    expect(home).toContain('aria-label="iyal, Sundharesan\'s research on farm margins"');
+    expect(home).toContain('aria-label="iyal, Sundharesan\'s research into the rural economy"');
     expect(home).toContain('href={withBase("/iyal")}');
     expect(home).toContain('slot="top-left"');
     expect(home).toContain('class="absolute top-12 left-6 font-script text-statement font-bold leading-none text-accent transition-colors hover:text-accent-hover sm:left-10 md:left-[max(1.5rem,8vw)]"');

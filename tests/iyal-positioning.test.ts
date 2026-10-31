@@ -7,8 +7,8 @@ describe("iyal sister masthead", () => {
   it("labels iyal as masthead-level research in the header", () => {
     const header = read("../src/components/Header.astro");
 
-    expect(header).toContain('aria-label="iyal, Sundharesan\'s research on farm margins"');
-    expect(header).toContain('title="iyal, research on farm margins"');
+    expect(header).toContain('aria-label="iyal, Sundharesan\'s research into the rural economy"');
+    expect(header).toContain('title="iyal, research into the rural economy"');
     expect(header).toContain('class="mm-iyal font-script text-statement font-bold leading-none text-accent transition-colors hover:text-accent-hover"');
   });
 
@@ -41,7 +41,7 @@ describe("iyal sister masthead", () => {
   it("grounds the iyal page in field-note language", () => {
     const iyal = read("../src/pages/iyal.astro");
 
-    expect(iyal).toContain("Following the money of a farming season: what it costs, what it earns, and who keeps the difference.");
+    expect(iyal).toContain("Understanding the rural economy, one farming season at a time.");
     expect(iyal).toContain("The week before sowing");
     expect(iyal).toContain("which truck can actually show up");
     expect(iyal).toContain("I am intentionally not building a large platform yet.");

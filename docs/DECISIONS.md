@@ -11,6 +11,11 @@ Format each entry: `### [short title] — YYYY-MM-DD`
 
 ## Decided
 
+### Rural economy framing for iyal — 2026-11-01
+At the owner's request, the opening statement is “Understanding the rural economy, one farming season at a time.” The kicker and metadata use the broader rural-economy framing; the detailed farming research remains intact. This replaces the money-led opening.
+
+The kicker is simply “Rural economy”, with the day-job phrase removed. Header and homepage accessible descriptions match. Final independent review `task_05619dbf24cc` / `ctx_793decc56f1b` found no material issues; build, all 77 tests, page checks and form checks passed.
+
 ### Employer before DevTwin — 2026-11-01
 The owner requested Oogway Labs first in the Now hero, linked to `https://oogwaylabs.com/` with the role “Forward-deployed engineer.” DevTwin follows with the shorter, owner-corrected framing “My developer taste, carried forward.” The two links form a compact vertical list at the top-right.
 
