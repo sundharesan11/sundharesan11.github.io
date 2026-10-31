@@ -11,6 +11,16 @@ Format each entry: `### [short title] — YYYY-MM-DD`
 
 ## Decided
 
+### Employer before DevTwin — 2026-11-01
+The owner requested Oogway Labs first in the Now hero, linked to `https://oogwaylabs.com/` with the role “Forward-deployed engineer.” DevTwin follows with the shorter, owner-corrected framing “My developer taste, carried forward.” The two links form a compact vertical list at the top-right.
+
+The owner subsequently chose the final DevTwin line: “Clone your developer self.”
+
+Verified at 1440px and 375px; production build and page checks passed. Independent review `task_babe96627351` / `ctx_2d72970e6612` approved the final implementation, including title-first reading order and the theme-independent focus colour. Lowercase devtwin follows the project's README branding.
+
+### DevTwin in the Now hero — 2026-11-01
+The Now/Work hero includes a small top-right DevTwin website link and one-line description. Copy and destination live in `src/content/work/devtwin.md`, sourced from the project's README. Existing typography and colour tokens keep the feature unboxed; the description wraps on narrow screens while the Now heading remains bottom-left.
+
 ### Open-thought conversation forms — 2026-11-01
 Kalai and Vilai reuse the existing EditorialField and Web3FormFields components for required name, email and message fields. Subjects identify the initiative. The shared public access key, honeypot, hCaptcha and same-site thanks redirect remain unchanged. Email stays available, and is the sole contact option if the key is missing. The standalone script restriction now permits only the shared Web3Forms captcha client. Scoped form tokens preserve both palettes and visible keyboard focus. Production form validation includes both routes. No test messages were sent.
 

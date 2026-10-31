@@ -90,6 +90,8 @@ File-based via `src/pages`. Routes: `/` (Home), `/work` (Now/Work role feature),
 
 ## Content model
 
+The Now hero directly imports `src/content/work/oogway.md` and `devtwin.md` frontmatter for its employer and project links, in that order. These page-specific content files are not a content collection.
+
 About provides the contextual introduction to Kalai and Vilai at `/about#open-thoughts`, directly after the ambitions/iyal paragraph. These normal prose links complement the existing To index links; they do not add primary-navigation destinations.
 
 `/kalai` and `/vilai` are standalone public thought pages. Both load a required entry from `src/content/initiatives/*.md` and render it through `InitiativeLayout.astro`. The `initiatives` schema defines the two palette names, metadata, opening, annotation, three possibilities, and conversation invitation; Markdown holds the personal body prose. `initiatives.css` is imported only by this standalone layout. Links use `withBase`, and the email subject identifies the page. The To desk links to both; the existing sports-development URL also links to Vilai. Neither page implies an operating programme. Visitors can send private notes through the shared Web3Forms integration. They use text-only social metadata and individual SVG favicons rather than the portfolio's personal share image.
