@@ -38,7 +38,7 @@ describe("progressive reveal motion", () => {
     const layout = read("../src/layouts/BaseLayout.astro");
 
     expect(cube).not.toContain("box-shadow");
-    expect(layout).toContain("Forward Deployed Engineer at Oogway Labs. One question from two sides");
+    expect(layout).toContain("What matters must be lived. A personal website by Sundharesan Kumaresan.");
     expect(layout).not.toContain("AI engineer and writer. One question from two sides");
     expect(layout).not.toContain("founder-in-waiting");
     expect(layout).not.toContain("designer & builder");

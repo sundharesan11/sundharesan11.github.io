@@ -65,9 +65,13 @@ if (!home.includes(`href="${base}/work"`) || !home.includes(`${base}/img/hero-cr
 }
 
 const canonical = `https://sundharesan11.github.io${base}/`;
-const ogImage = `https://sundharesan11.github.io${base}/og-default.png`;
+const ogImage = `https://sundharesan11.github.io${base}/og-profile-2026.png`;
 if (!home.includes(`<link rel="canonical" href="${canonical}"`)
-  || !home.includes(`<meta property="og:image" content="${ogImage}"`)) {
+  || !home.includes(`<meta property="og:image" content="${ogImage}"`)
+  || !home.includes(`<meta name="twitter:image" content="${ogImage}"`)
+  || !home.includes('<meta property="og:image:width" content="1200"')
+  || !home.includes('<meta property="og:image:height" content="630"')
+  || !home.includes('<meta property="og:image:alt" content="Sundharesan Kumaresan. What matters must be lived.')) {
   throw new Error("The home page has incorrect canonical or Open Graph metadata");
 }
 

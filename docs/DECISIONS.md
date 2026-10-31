@@ -11,6 +11,14 @@ Format each entry: `### [short title] — YYYY-MM-DD`
 
 ## Decided
 
+### Final personal sharing line — 2026-11-01
+The owner selected “What matters must be lived.” for the thumbnail and matching sharing description. The name is blue. This supersedes the earlier “Ideas, stories…” draft below.
+
+Final review `task_c1714d8f6357` / `ctx_0a5d2d8f1906` approved the image and metadata. Build, all 77 tests, page checks and form checks passed. The thumbnail is a fixed white-background image independent of the site's theme.
+
+### Refresh the sharing thumbnail — 2026-11-01
+The old `og-default.png` had obsolete “Designer & builder” copy baked into its pixels. BaseLayout now points both Open Graph and Twitter previews to `og-profile-2026.png`: a 1200×630 editorial card with the owner's name and “Ideas, stories, and things I’m figuring out.” The owner requested personal rather than employer-led positioning. Explicit type, dimensions and image alt text accompany it. A new asset URL allows image caches to distinguish the replacement; previously shared messages may retain their cached previews. The old asset remains available for existing links. Kalai/Vilai retain their separate metadata.
+
 ### Rural economy framing for iyal — 2026-11-01
 At the owner's request, the opening statement is “Understanding the rural economy, one farming season at a time.” The kicker and metadata use the broader rural-economy framing; the detailed farming research remains intact. This replaces the money-led opening.
 

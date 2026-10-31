@@ -34,7 +34,7 @@ describe("FixedPhotoHero", () => {
   it("gives iyal the Home opening and uses the forward-deployed identity", () => {
     const home = read("../src/pages/index.astro");
 
-    expect(home).toContain('description="Sundharesan Kumaresan · Forward Deployed Engineer at Oogway Labs. A personal publication about systems, stories, and who gets seen."');
+    expect(home).toContain('description="What matters must be lived. A personal website by Sundharesan Kumaresan."');
     expect(home).toContain('aria-label="iyal, Sundharesan\'s research into the rural economy"');
     expect(home).toContain('href={withBase("/iyal")}');
     expect(home).toContain('slot="top-left"');
