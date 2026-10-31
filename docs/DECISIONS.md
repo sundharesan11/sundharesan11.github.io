@@ -11,6 +11,11 @@ Format each entry: `### [short title] — YYYY-MM-DD`
 
 ## Decided
 
+### Remove the Astro favicon fallback — 2026-11-01
+The root `favicon.ico` still held Astro's starter logo despite the branded SVG favicon. Replaced it with a valid ICO containing the existing S icon and added `icon-2026.png` plus explicit favicon links. All formats derive from the existing SVG; Kalai/Vilai keep their own declared icons. Slack may retain its cached icon until it crawls again.
+
+Review `task_fc085b64c058` / `ctx_e645b88c0ff5` verified the ICO structure and matching PNG payload. Build, 77 tests, and generated-page checks passed.
+
 ### Single-line name on sharing card — 2026-11-01
 The owner requested the full blue name on one line. The revised 1200×630 card uses `og-profile-2026-v2.png` so crawlers receive a new image URL. The tagline remains “What matters must be lived.” Previous image URLs remain available unchanged.
 

@@ -60,6 +60,9 @@ if (failures.length || staleReferences.length) {
 }
 
 const home = await readFile("dist/index.html", "utf8");
+if (!home.includes(`href="${base}/icon-2026.png"`) || !home.includes(`href="${base}/favicon.ico"`)) {
+  throw new Error("The home page must advertise branded PNG and ICO fallback icons");
+}
 if (!home.includes(`href="${base}/work"`) || !home.includes(`${base}/img/hero-crop.jpeg`)) {
   throw new Error("The home page is missing expected base-prefixed navigation or imagery");
 }
