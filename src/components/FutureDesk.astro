@@ -31,6 +31,20 @@ const ambitions = [
     <p data-reveal class="display-fit mt-8 max-w-[22ch] font-serif text-statement font-semibold leading-[1.05]">Things I intend to build. All of them.</p>
   </PageHeader>
 
+  <section aria-label="Two open thoughts" class="mt-10 border-t border-border pt-8">
+    <p class="text-dek text-text-muted">Two thoughts with a little room of their own.</p>
+    <div class="mt-6 grid gap-8 sm:grid-cols-2">
+      <a href={withBase("/kalai")} class="thought-link-kalai group block">
+        <h2 class="font-sans text-display-name font-semibold leading-none tracking-tight">Kalai <span aria-hidden="true" class="adv-arrow inline-block text-statement">↗</span></h2>
+        <p class="mt-3 text-base">On art <span lang="ta">· கலை</span></p>
+      </a>
+      <a href={withBase("/vilai")} class="thought-link-vilai group block">
+        <h2 class="font-sans text-display-name font-semibold leading-none tracking-tight">Vilai <span aria-hidden="true" class="adv-arrow inline-block text-statement">↗</span></h2>
+        <p class="mt-3 text-base">On sport <span lang="ta">· விளை</span></p>
+      </a>
+    </div>
+  </section>
+
   <section class="mt-14">
     {ambitions.map((a) => (
       <article class="group border-t border-border py-10">

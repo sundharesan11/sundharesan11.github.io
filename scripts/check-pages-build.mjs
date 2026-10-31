@@ -77,4 +77,41 @@ if (!base) {
   }
 }
 
-console.log(`GitHub Pages paths verified for ${base || "/"} across ${files.length} generated files.`);
+const toPage = await readFile("dist/to/index.html", "utf8");
+if (!toPage.includes("data-to-thoughts")
+  || !toPage.includes("Two thoughts with a little room")
+  || !toPage.includes("Season Trust")
+  || !toPage.includes(`href="${base}/kalai"`)
+  || !toPage.includes(`href="${base}/vilai"`)
+  || toPage.indexOf("Two thoughts with a little room") > toPage.indexOf("Season Trust")) {
+  throw new Error("To must show contextual thought navigation and prominent links before the ambitions");
+}
+for (const route of ["about", "to/sports-development", "to/agri-fintech", "to/waste-management"]) {
+  const page = await readFile(`dist/${route}/index.html`, "utf8");
+  if (page.includes("data-to-thoughts")) throw new Error(`${route}: contextual thought navigation belongs only on the To index`);
+}
+
+for (const name of ["kalai", "vilai"]) {
+  const page = await readFile(`dist/${name}/index.html`, "utf8");
+  const expected = [
+    `href="${base}/kalai"`,
+    `href="${base}/vilai"`,
+    `href="${base}/about"`,
+    `href="${base}/icons/${name}.svg"`,
+    `href="${base}/${name}" aria-current="page"`,
+    `href="mailto:sundharesansk11@gmail.com?subject=A%20thought%20about%20${name[0].toUpperCase() + name.slice(1)}"`,
+    `<link rel="canonical" href="https://sundharesan11.github.io${base}/${name}/"`,
+  ];
+  for (const fragment of expected) {
+    if (!page.includes(fragment)) throw new Error(`${name}: missing ${fragment}`);
+  }
+  const scripts = page.match(/<script\b[^>]*>[\s\S]*?<\/script>/g) ?? [];
+  if (scripts.some(script => !/^<script\s+src="https:\/\/web3forms\.com\/client\/script\.js"\s+async\s+defer><\/script>$/.test(script)) || page.includes('id="cube-menu"')) {
+    throw new Error(`${name}: only the shared Web3Forms captcha script is allowed; no portfolio chrome`);
+  }
+  if ((page.match(/<h1\b/g) ?? []).length !== 1 || (page.match(/aria-current="page"/g) ?? []).length !== 1) {
+    throw new Error(`${name}: expected one main heading and one current navigation link`);
+  }
+}
+
+console.log(`GitHub Pages paths verified for ${base || "/"} across ${files.length} generated files, including Kalai and Vilai.`);

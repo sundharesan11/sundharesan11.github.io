@@ -2,7 +2,7 @@
 import Monogram from "./Monogram.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import { withBase, withoutBase } from "../lib/paths";
-// One running order everywhere: Home contents, this nav, and the cube menu agree.
+// The base running order agrees with the cube menu; To adds contextual thought links.
 const links = [
   { href: "/work", label: "Now / Work" },
   { href: "/writing", label: "Writing" },
@@ -12,13 +12,14 @@ const links = [
   { href: "/about", label: "About" },
 ];
 const path = withoutBase(Astro.url.pathname);
+const showThoughts = path.replace(/\/+$/, "") === "/to";
 const isActive = (href: string) => path.startsWith(href);
 const deferUntilHomeImageHidden = path === "/";
 const wrap = deferUntilHomeImageHidden ? "fixed inset-x-0 top-0 z-50 bg-transparent" : "sticky top-0 z-50 bg-transparent";
 ---
 <header class:list={[wrap, "site-header w-full"]} data-deferred-header={deferUntilHomeImageHidden ? "home-photo" : undefined}>
   <div class="mx-auto w-[calc(100%-2rem)] max-w-topbar pt-2 pb-0 sm:w-[calc(100%-3rem)] sm:pt-3 sm:pb-0">
-    <div class="glass-topbar flex min-w-0 items-center justify-between gap-3 px-4 py-2 sm:justify-normal sm:gap-7 sm:px-5">
+    <div class:list={["glass-topbar flex min-w-0 items-center justify-between gap-3 px-4 py-2 sm:justify-normal sm:gap-7 sm:px-5", showThoughts && "flex-wrap xl:flex-nowrap"]}>
       <div class="flex min-w-0 items-center gap-4 sm:mr-auto sm:gap-5">
         <Monogram size="1.45rem" />
         <a
@@ -29,10 +30,18 @@ const wrap = deferUntilHomeImageHidden ? "fixed inset-x-0 top-0 z-50 bg-transpar
           class="mm-iyal font-script text-statement font-bold leading-none text-accent transition-colors hover:text-accent-hover"
         >iyal</a>
       </div>
-      <nav aria-label="Primary" class="hidden items-center gap-7 sm:flex">
+      <nav aria-label="Primary" class:list={["hidden items-center whitespace-nowrap", showThoughts ? "gap-5 xl:flex" : "gap-7 sm:flex"]}>
         {links.map((l) => (
+          <Fragment>
           <a href={withBase(l.href)} aria-current={isActive(l.href) ? "page" : undefined}
              class:list={["text-xs font-semibold uppercase tracking-kicker transition-colors u-draw", isActive(l.href) ? "text-accent hover:text-accent-hover" : "text-text-muted hover:text-text"]}>{l.label}</a>
+          {showThoughts && l.href === "/to" && (
+            <span data-to-thoughts class="flex items-center gap-4 text-sm font-semibold">
+              <a href={withBase("/kalai")} class="thought-link-kalai u-draw">Kalai</a>
+              <a href={withBase("/vilai")} class="thought-link-vilai u-draw">Vilai</a>
+            </span>
+          )}
+          </Fragment>
         ))}
       </nav>
       <div class="flex shrink-0 items-center gap-2 sm:gap-3">
@@ -41,6 +50,13 @@ const wrap = deferUntilHomeImageHidden ? "fixed inset-x-0 top-0 z-50 bg-transpar
           <span class="hb" aria-hidden="true"><span class="hb-l hb-1"></span><span class="hb-l hb-2"></span><span class="hb-l hb-3"></span></span>
         </button>
       </div>
+      {showThoughts && (
+        <nav aria-label="To and open thoughts" data-to-thoughts class="flex w-full items-center justify-center gap-6 border-t border-border py-2 text-sm font-semibold xl:hidden">
+          <a href={withBase("/to")} aria-current="page" class="u-draw text-accent">To</a>
+          <a href={withBase("/kalai")} class="thought-link-kalai u-draw">Kalai</a>
+          <a href={withBase("/vilai")} class="thought-link-vilai u-draw">Vilai</a>
+        </nav>
+      )}
     </div>
   </div>
 </header>

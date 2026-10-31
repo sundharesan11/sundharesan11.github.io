@@ -15,6 +15,24 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  /* Kalai / Vilai prints and their contextual portfolio links. */
+  --color-kalai-paper: #191b16;
+  --color-kalai-ink: #f2d85c;
+  --color-vilai-paper: #f3f0e6;
+  --color-vilai-ink: #183f96;
+  --color-kalai-link: #806100;
+  --color-vilai-link: #183f96;
+  --text-initiative-wordmark: clamp(6rem, 28vw, 23rem);
+  --text-initiative-wordmark--line-height: 0.9;
+  --text-initiative-tamil: clamp(1.125rem, 3vw, 2.5rem);
+  --text-initiative-statement: clamp(2rem, 4.3vw, 4rem);
+  --text-initiative-statement--line-height: 1.08;
+  --tracking-initiative: -0.075em;
+  --tracking-initiative-heading: -0.045em;
+  --spacing-initiative-gutter: clamp(1.5rem, 5vw, 5rem);
+  --spacing-initiative-section: clamp(3.5rem, 8vw, 7rem);
+  --container-initiative: 90rem;
+  --container-initiative-copy: 43rem;
   /* Color: light is the default palette */
   --color-bg: #FFFFFF;
   --color-surface: #F7F7F5;
@@ -104,6 +122,8 @@
 
 /* Dark palette: overrides the color tokens only */
 .dark {
+  --color-kalai-link: #f2d85c;
+  --color-vilai-link: #92b3ff;
   --color-bg: #0B0B0C;
   --color-surface: #161617;
   --color-text: #EDEDED;
@@ -116,6 +136,8 @@
 
 /* Cream palette: warm beige/day mode */
 .theme-cream {
+  --color-kalai-link: #806100;
+  --color-vilai-link: #183f96;
   --color-bg: #F3EBDD;
   --color-surface: #EAE0CF;
   --color-text: #3B342B;
@@ -127,6 +149,11 @@
 }
 
 /* Base resets / element defaults */
+.thought-link-kalai { --color-accent: var(--color-kalai-link); color: var(--color-kalai-link); }
+.thought-link-vilai { --color-accent: var(--color-vilai-link); color: var(--color-vilai-link); }
+.thought-link-kalai:not(.u-draw):hover, .thought-link-vilai:not(.u-draw):hover { text-decoration: underline; text-underline-offset: 0.25em; }
+.thought-link-kalai:focus-visible { outline-color: var(--color-kalai-link); }
+.thought-link-vilai:focus-visible { outline-color: var(--color-vilai-link); }
 :root { color-scheme: light dark; }
 
 html {

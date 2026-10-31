@@ -13,7 +13,8 @@ describe("Web3Forms contact surfaces", () => {
     expect(sharedFields).toContain('name="botcheck"');
     expect(sharedFields).toContain('class="h-captcha"');
     expect(sharedFields).toContain('data-captcha="true"');
-    expect(sharedFields).toContain('data-theme="auto"');
+    expect(sharedFields).toContain('captchaTheme = "auto"');
+    expect(sharedFields).toContain('data-theme={captchaTheme}');
     expect(sharedFields).toContain("overflow-x-auto");
     expect(sharedFields).toContain('src="https://web3forms.com/client/script.js"');
   });

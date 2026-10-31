@@ -17,6 +17,14 @@ The spine of the site. Every UI choice traces back here. Aesthetic: **Vogue/maga
 
 ## Color tokens
 
+**To-page doorways:** By owner request, the To index also uses Kalai/Vilai colour for contextual navigation beside To and large links above the ambitions. `kalai-link` is #806100 on light/cream and #f2d85c on dark; `vilai-link` is #183f96 on light/cream and #92b3ff on dark. Contrast against the corresponding page backgrounds: Kalai 5.79/4.89/13.82:1; Vilai 9.59/8.10/9.48:1. Hover retains the ink and adds an underline; focus uses the same ink. This extends the standalone colour exception only to these named doorways. No other publication copy changes colour.
+
+Kalai and Vilai wordmarks end with small Tamil names (`கலை`, `விளை`) instead of a full stop. These use `text-initiative-tamil` (clamp 1.125rem/3vw/2.5rem), normal tracking, weight 400, and `lang="ta"` with system Tamil glyph fallback. Names live in the content collection's `tamilTitle` field.
+
+**Standalone Kalai / Vilai:** The owner-approved pages use independent palettes in `InitiativeLayout.astro` / `initiatives.css`: `kalai-paper` (#191b16) and `kalai-ink` (#f2d85c), contrast 12.20:1; `vilai-paper` (#f3f0e6) and `vilai-ink` (#183f96), contrast 8.41:1. All readable copy, links and focus indicators use full-strength ink. This scoped exception does not change the publication's single stellar-blue rule.
+
+Their named `@theme` tokens are `text-initiative-wordmark` (clamp 6rem/28vw/23rem, line height .9), `text-initiative-statement` (clamp 2rem/4.3vw/4rem, line height 1.08), tracking `initiative` (-.075em) and `initiative-heading` (-.045em), spacing `initiative-gutter` (clamp 1.5rem/5vw/5rem) and `initiative-section` (clamp 3.5rem/8vw/7rem), containers `initiative` (90rem) and `initiative-copy` (43rem). Existing Inter and Source Serif fonts are reused. SVG coordinates are illustration geometry; favicon SVGs repeat these palettes because external SVG cannot inherit page CSS tokens. Native cross-document fades are enabled only without reduced motion. Content is never hidden.
+
 Ink (black/white, theme-dependent) + full-colour photography + a single stellar-blue spot colour. Photographs carry all other colour.
 
 | Token            | Light       | Dark        | Use |

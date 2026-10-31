@@ -1,0 +1,95 @@
+---
+import type { CollectionEntry } from "astro:content";
+import "../styles/global.css";
+import "../styles/initiatives.css";
+import { withBase } from "../lib/paths";
+import EditorialField from "../components/EditorialField.astro";
+import Web3FormFields from "../components/Web3FormFields.astro";
+interface Props { entry: CollectionEntry<"initiatives"> }
+const { entry } = Astro.props;
+const d = entry.data;
+const site = Astro.site ?? "https://sundharesan11.github.io";
+const canonical = new URL(Astro.url.pathname, site).href;
+const email = "sundharesansk11@gmail.com";
+const web3formsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+const hasWeb3FormsKey = web3formsAccessKey.trim().length > 0;
+const mailto = `mailto:${email}?subject=${encodeURIComponent(`A thought about ${d.title}`)}`;
+---
+<!doctype html>
+<html lang="en" class={`initiative initiative--${d.palette}`}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{d.title} · An open thought</title>
+    <meta name="description" content={d.description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={`${d.title} · An open thought`} />
+    <meta property="og:description" content={d.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href={withBase(`/icons/${d.palette}.svg`)} />
+  </head>
+  <body>
+    <a class="initiative-skip" href="#main-content">Skip to the thought</a>
+    <header class="initiative-header">
+      <a class="initiative-home" href={withBase("/")}><span aria-hidden="true">←</span> Back to Sundharesan</a>
+      <nav aria-label="Two open thoughts">
+        <a href={withBase("/kalai")} aria-current={d.palette === "kalai" ? "page" : undefined}>Kalai<span aria-hidden="true">↗</span></a>
+        <a href={withBase("/vilai")} aria-current={d.palette === "vilai" ? "page" : undefined}>Vilai<span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main-content">
+      <section class="initiative-hero" aria-labelledby="wordmark">
+        <div class="initiative-meta"><span>An open thought / {d.meaning}</span><span>{d.subject}</span></div>
+        <h1 id="wordmark" class="initiative-wordmark">{d.title.toLowerCase()}<span class="initiative-tamil" lang="ta">{d.tamilTitle}</span></h1>
+        <div class="initiative-opening">
+          <p class="initiative-statement">{d.opening}</p>
+          <div class="initiative-intro"><p>{d.introduction}</p><a class="initiative-read" href="#the-thought">A few thoughts <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="initiative-drawing">
+          <svg viewBox="0 0 1200 180" fill="none" focusable="false" aria-hidden="true">
+            {d.palette === "kalai" ? (
+              <path d="M0 135 C115 135 177 125 244 95 C311 65 350 26 320 24 C278 21 257 144 344 149 C445 155 507 28 466 18 C412 5 393 156 502 157 C614 158 688 57 657 43 C617 24 576 140 671 145 C761 150 814 93 875 86 C935 79 918 143 975 140 C1058 136 1119 120 1200 122" />
+            ) : (
+              <path d="M0 140 H150 C210 140 294 104 294 60 C294 20 246 20 246 60 C246 104 282 140 342 140 C402 140 486 104 486 60 C486 20 438 20 438 60 C438 104 474 140 534 140 C594 140 678 104 678 60 C678 20 630 20 630 60 C630 104 666 140 726 140 C786 140 870 104 870 60 C870 20 822 20 822 60 C822 104 858 140 918 140 H1200" />
+            )}
+          </svg>
+          <span class="initiative-handnote">{d.annotation}</span>
+        </div>
+      </section>
+      <section id="the-thought" class="initiative-section initiative-thought" aria-labelledby="thought-title">
+        <p class="initiative-label"><span>01 / The thought</span><span class="initiative-margin">Still taking shape.</span></p>
+        <div class="initiative-copy"><h2 id="thought-title">{d.bodyHeading}</h2><div class="initiative-prose"><slot /></div></div>
+      </section>
+      <section class="initiative-section" aria-labelledby="possibilities-title">
+        <div class="initiative-label"><h2 id="possibilities-title">02 / Possibilities</h2><span class="initiative-margin">Things I keep returning to.</span></div>
+        <div class="initiative-ideas">
+          {d.ideas.map((idea, index) => (
+            <article class="initiative-idea"><span class="initiative-idea-number" aria-hidden="true">0{index + 1}</span><div><h3>{idea.title}</h3><p>{idea.text}</p></div></article>
+          ))}
+        </div>
+      </section>
+      <section class="initiative-section initiative-conversation" aria-labelledby="conversation-title">
+        <p class="initiative-label"><span>03 / A conversation</span><span class="initiative-margin">A beginning, perhaps.</span></p>
+        <div class="initiative-copy">
+          <h2 id="conversation-title">{d.question}</h2>
+          <p class="initiative-invitation">{d.invitation}</p>
+          {hasWeb3FormsKey ? (
+            <form action="https://api.web3forms.com/submit" method="POST" class="initiative-form">
+              <EditorialField required label="Your name" name="name" autocomplete="name" placeholder="What should I call you?" />
+              <EditorialField required type="email" label="Email" name="email" autocomplete="email" placeholder="Where should I reply?" />
+              <EditorialField required type="textarea" label="Your thought" name="message" rows={6} placeholder="A story, a question, or someone I should know about." />
+              <Web3FormFields accessKey={web3formsAccessKey} subject={`A thought about ${d.title}`} fromName={`${d.title} · Sundharesan website`} captchaTheme={d.palette === "kalai" ? "dark" : "light"} />
+              <button class="initiative-write" type="submit">Send your thought <span aria-hidden="true">↗</span></button>
+            </form>
+          ) : (
+            <a class="initiative-write" href={mailto}>Write to me <span aria-hidden="true">↗</span></a>
+          )}
+          <a class="initiative-email" href={mailto}>{hasWeb3FormsKey ? "Or email me: " : ""}{email}</a>
+        </div>
+      </section>
+    </main>
+    <footer class="initiative-footer"><p>A thought by <a href={withBase("/about")}>Sundharesan</a>.</p><p>Room for this to become something.</p><a href="#wordmark">Back to the beginning <span aria-hidden="true">↑</span></a></footer>
+  </body>
+</html>

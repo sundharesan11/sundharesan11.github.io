@@ -17,12 +17,15 @@ const configuredForm = (subject: string) => `
 
 function fixture(contactHtml = configuredForm("Website contact")) {
   const root = mkdtempSync(join(tmpdir(), "web3forms-build-"));
-  for (const route of ["contact", "iyal", "reading", "thanks"]) {
+  for (const route of ["contact", "iyal", "reading", "kalai", "vilai", "thanks"]) {
     mkdirSync(join(root, route), { recursive: true });
   }
   writeFileSync(join(root, "contact/index.html"), contactHtml);
   writeFileSync(join(root, "iyal/index.html"), configuredForm("iyal field note"));
   writeFileSync(join(root, "reading/index.html"), configuredForm("Private book recommendation"));
+  for (const name of ["kalai", "vilai"]) {
+    writeFileSync(join(root, `${name}/index.html`), configuredForm(`A thought about ${name}`));
+  }
   writeFileSync(join(root, "thanks/index.html"), '<meta name="robots" content="noindex, nofollow"><h1>Message sent</h1>');
   return root;
 }
@@ -40,6 +43,12 @@ describe("production Web3Forms build validation", () => {
   it("rejects empty access keys", () => {
     const html = configuredForm("Website contact").replace('value="configured-key"', 'value=""');
     expect(() => validateWeb3FormsBuild(fixture(html))).toThrow(/contact.*access key/i);
+  });
+
+  it.each(["kalai", "vilai"])("requires the %s form in production", (name) => {
+    const root = fixture();
+    writeFileSync(join(root, `${name}/index.html`), '<a href="mailto:test@example.com">Email</a>');
+    expect(() => validateWeb3FormsBuild(root)).toThrow(new RegExp(`${name}.*Web3Forms form`, "i"));
   });
 
   it("rejects redirects away from the same-site success page", () => {

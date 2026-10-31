@@ -5,9 +5,10 @@ interface Props {
   accessKey: string;
   subject: string;
   fromName: string;
+  captchaTheme?: "auto" | "light" | "dark";
 }
 
-const { accessKey, subject, fromName } = Astro.props;
+const { accessKey, subject, fromName, captchaTheme = "auto" } = Astro.props;
 const redirect = new URL(withBase("/thanks/"), Astro.site ?? Astro.url.origin).href;
 ---
 
@@ -18,7 +19,7 @@ const redirect = new URL(withBase("/thanks/"), Astro.site ?? Astro.url.origin).h
 <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
 <div class="mt-8 max-w-full overflow-x-auto pb-1" data-web3forms-captcha>
-  <div class="h-captcha" data-captcha="true" data-theme="auto"></div>
+  <div class="h-captcha" data-captcha="true" data-theme={captchaTheme}></div>
 </div>
 
 <script is:inline src="https://web3forms.com/client/script.js" async defer></script>

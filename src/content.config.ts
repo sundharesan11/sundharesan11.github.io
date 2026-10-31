@@ -31,4 +31,23 @@ const reading = defineCollection({
   }),
 });
 
-export const collections = { writing, reading };
+const initiatives = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/initiatives" }),
+  schema: z.object({
+    title: z.string(),
+    tamilTitle: z.string(),
+    palette: z.enum(["kalai", "vilai"]),
+    meaning: z.string(),
+    subject: z.string(),
+    description: z.string(),
+    opening: z.string(),
+    introduction: z.string(),
+    annotation: z.string(),
+    bodyHeading: z.string(),
+    ideas: z.array(z.object({ title: z.string(), text: z.string() })).length(3),
+    question: z.string(),
+    invitation: z.string(),
+  }),
+});
+
+export const collections = { writing, reading, initiatives };
