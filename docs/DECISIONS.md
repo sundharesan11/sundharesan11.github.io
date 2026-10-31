@@ -11,6 +11,11 @@ Format each entry: `### [short title] — YYYY-MM-DD`
 
 ## Decided
 
+### Single-line name on sharing card — 2026-11-01
+The owner requested the full blue name on one line. The revised 1200×630 card uses `og-profile-2026-v2.png` so crawlers receive a new image URL. The tagline remains “What matters must be lived.” Previous image URLs remain available unchanged.
+
+Review `task_6df14f8651c6` / `ctx_3e7a0c2092b1` approved the final image and metadata. Build, all 77 tests, page checks and form checks passed.
+
 ### Final personal sharing line — 2026-11-01
 The owner selected “What matters must be lived.” for the thumbnail and matching sharing description. The name is blue. This supersedes the earlier “Ideas, stories…” draft below.
 

@@ -65,7 +65,7 @@ if (!home.includes(`href="${base}/work"`) || !home.includes(`${base}/img/hero-cr
 }
 
 const canonical = `https://sundharesan11.github.io${base}/`;
-const ogImage = `https://sundharesan11.github.io${base}/og-profile-2026.png`;
+const ogImage = `https://sundharesan11.github.io${base}/og-profile-2026-v2.png`;
 if (!home.includes(`<link rel="canonical" href="${canonical}"`)
   || !home.includes(`<meta property="og:image" content="${ogImage}"`)
   || !home.includes(`<meta name="twitter:image" content="${ogImage}"`)
